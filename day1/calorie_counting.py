@@ -13,8 +13,3 @@ txt.close()
 elf_vector.sort(reverse=True, key=lambda t: t[1])
 print(elf_vector[0][1])
 print(reduce(lambda acc, x: acc + x[1], elf_vector[:3], 0))
-
-
-
-
-
