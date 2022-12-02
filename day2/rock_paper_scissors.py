@@ -11,15 +11,14 @@ payoff_mx = [[0, 1, -1], [-1, 0, 1], [1, -1, 0]]
 
 def score(row, part2=False):
     p1 = shape_to_idx[row[0]]
-    p2 = determine([p1, row[1]]) if part2 else shape_to_idx[row[1]]
+    p2 = determine(p1, row[1]) if part2 else shape_to_idx[row[1]]
     
     payoff_to_score = lambda x: pts['WIN'] if x==1 else (pts['DRAW'] if x==0 else pts['LOSE'])
     shape_score = p2 + 1
     score = payoff_to_score(payoff_mx[p1][p2]) + shape_score
     return score 
 
-def determine(row):
-    [p1, shape] = row
+def determine(p1, shape):
     shape = intent_to_shape[shape]
 
     for i in range(len(payoff_mx[0])):
