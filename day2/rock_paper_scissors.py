@@ -18,8 +18,8 @@ def score(row, part2=False):
     score = payoff_to_score(payoff_mx[p1][p2]) + shape_score
     return score 
 
-def determine(p1, shape):
-    shape = intent_to_shape[shape]
+def determine(p1, intent):
+    shape = intent_to_shape[intent]
 
     for i in range(len(payoff_mx[0])):
         if payoff_mx[p1][i] == shape:
