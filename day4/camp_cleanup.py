@@ -12,3 +12,4 @@ def overlap_reducer(acc, txt):
 
 #print(reduce(inclusive_reducer, txt, 0))
 print(reduce(overlap_reducer, txt, 0))
+txt.close()

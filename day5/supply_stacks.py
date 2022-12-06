@@ -25,4 +25,4 @@ def reducer(acc, ln):
 
 _, stacks = reduce(reducer, txt, [True, stacks]) 
 print(reduce(lambda acc, x: acc+str(x[-1]), stacks, ""))
-    
+txt.close()
