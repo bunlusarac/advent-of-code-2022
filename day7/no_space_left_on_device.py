@@ -23,7 +23,6 @@ def browse(stack):
     
     return ref
 
-
 fs = {'content': {}, 'size': 0}
 stack = []
 sizes = []
@@ -42,8 +41,6 @@ def parse(input):
             stack.append(node)
             pwd['content'][node] = {'content': {}, 'size': 0}
             pwd = pwd['content'][node]
-            
-
         elif token_type == "B":
             type_or_size, node = tokens[1:] 
             
@@ -51,7 +48,6 @@ def parse(input):
                 pwd["content"][node] = {'size': int(type_or_size)}
             else:
                 continue
-
         elif token_type == "C":
             for file in pwd['content'].values():
                 pwd['size'] += file['size']
