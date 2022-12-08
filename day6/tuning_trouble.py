@@ -1,5 +1,3 @@
-from functools import reduce
-
 txt = open("input.txt","r")
 stream = txt.read()
 
