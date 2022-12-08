@@ -76,7 +76,6 @@ remaining_space = disk_space - used_space
 update_space = 30000000
 deleted_space = update_space - remaining_space
 
-min_dir = {'content':{}, 'size': disk_space}
 min_size = disk_space
 
 def scan(pwd):
