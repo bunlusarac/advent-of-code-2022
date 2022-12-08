@@ -2,6 +2,7 @@ import re
 
 txt = open("input.txt", "r")
 fulltext = txt.read()
+txt.close()
 
 #map the input into tokens for easier processing
 def tokenize(input):
