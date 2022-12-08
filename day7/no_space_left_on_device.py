@@ -3,6 +3,7 @@ import re
 txt = open("input.txt", "r")
 fulltext = txt.read()
 
+#map the input into tokens for easier processing
 def tokenize(input):
     A = re.sub("[$] cd (\/|\w+)\n[$] ls\n", r"A \1\n", input)
     B = re.sub("[^c]([dir|\d+]+) ([a-zA-Z.]+)", r"\nB \1 \2", A)
@@ -10,10 +11,10 @@ def tokenize(input):
 
     return C
 
+#give reference to directory for given path stack
 def browse(stack):
     temp = fs['content']
     ref = None
-
 
     for dest in stack:
         ref = temp[dest]
@@ -21,10 +22,12 @@ def browse(stack):
     
     return ref
 
+
 fs = {'content': {}, 'size': 0}
 stack = []
 sizes = []
 
+#parse the tokenized input, fill fs and sizes
 def parse(input):
     tokenized_lines = tokenize(input).splitlines()
     pwd = fs
@@ -56,7 +59,7 @@ def parse(input):
             stack.pop()
             pwd = browse(stack)
 
-    
+    #calculate sum for remaining directories in stack
     while len(stack) != 0:
         for file in pwd['content'].values():
             pwd['size'] += file['size']
@@ -69,12 +72,12 @@ parse(fulltext)
 total_pt1 = sum(filter(lambda x: x < 100000, sizes))
 print(total_pt1)
 
+#part 2
 disk_space = 70000000
 used_space = fs['content']['/']['size']
 remaining_space = disk_space - used_space
 update_space = 30000000
 deleted_space = update_space - remaining_space
-
 
 min_dir = {'content':{}, 'size': disk_space}
 min_size = disk_space
@@ -87,5 +90,6 @@ def scan(pwd):
             min_size = min(scan(dir)['size'], min_size)
 
     return pwd
-deleted_dir = scan(fs)
+
+scan(fs)
 print(min_size)
